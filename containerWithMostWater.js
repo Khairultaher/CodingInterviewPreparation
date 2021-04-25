@@ -1,3 +1,5 @@
+// Container With Most Water (Medium Problem)
+
 const heightsArray = [4,8,1,2,3,9];
 
 const getMaxWaterContainer = function(heights) {

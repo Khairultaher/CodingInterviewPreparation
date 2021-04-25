@@ -1,3 +1,5 @@
+// Two Number Sum (Easy Problem)
+
 // O(n) time | O(n) space
 function twoNumberSum(array, target) {
     let nums = {};
