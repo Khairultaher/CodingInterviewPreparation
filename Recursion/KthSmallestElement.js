@@ -1,11 +1,4 @@
-function fac(val, total = 1) {
-    if (val === 0) {
-        return total;
-    } else {
-        return fac(val - 1, total * val);
-    }
-}
-
+// Find kth largest element - Quickselect
 const array = [5, 3, 1, 6, 4, 2];
 const kToFind = 4;
 
@@ -26,20 +19,23 @@ const getPartition = function (nums, left, right) {
     }
     return i - 1;
 };
-// 1, 2, 3, 4, 5, 6
-const quickSort = function (nums, left, right) {
-    if (left < right) {
-        const partitionIndex = getPartition(nums, left, right);
 
-        quickSort(nums, left, partitionIndex - 1);
-        quickSort(nums, partitionIndex + 1, right);
+const quickSelect = function (nums, left, right, indexToFind) {
+    const partitionIndex = getPartition(nums, left, right);
+    // 5, 3, 1, 6, 4, 2
+    if (partitionIndex === indexToFind) {
+        return nums[partitionIndex];
+    } else if (indexToFind < partitionIndex) {
+        return quickSelect(nums, left, partitionIndex - 1, indexToFind);
+    } else {
+        return quickSelect(nums, partitionIndex + 1, right, indexToFind);
     }
 };
 
 var findKthLargest = function (nums, k) {
     const indexToFind = nums.length - k;
-    quickSort(nums, 0, nums.length - 1);
-    return nums[indexToFind]
+
+    return quickSelect(nums, 0, nums.length - 1, indexToFind);
 };
 
 console.log(findKthLargest(array, kToFind))
